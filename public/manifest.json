@@ -1,7 +1,7 @@
 {
     "name": "reading-tool",
     "description": "Improves your reading spped and comrehension",
-    "authors": "Ali, Amritha, Rosy, Shashanka",
+    "author": "Ali, Amritha, Rosy, Shashanka",
     "version": "1.0",
     "manifest_version": 3,
     "action": {
