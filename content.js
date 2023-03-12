@@ -1,16 +1,47 @@
-const  tagSet = new Set(["h1","h2","h3","h4","h5","h6","p","span","br","sup","sub","u","i","b","em","strong","del","ins","ruby","kbd","wbr"])
-const targetElements = Array.from(document.querySelectorAll("*")).filter(d => tagSet.has(d.tagName.toLowerCase()) && d.textContent.split(" ").length >= 20)
+const tagSet = new Set([
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'p',
+    'span',
+    'br',
+    'sup',
+    'sub',
+    'u',
+    'i',
+    'b',
+    'em',
+    'strong',
+    'del',
+    'ins',
+    'ruby',
+    'kbd',
+    'wbr',
+]);
+const targetElements = Array.from(document.querySelectorAll('*')).filter(
+    (d) =>
+        tagSet.has(d.tagName.toLowerCase()) &&
+        d.textContent.split(' ').length >= 20
+);
 
-for(const te of targetElements) {
-    console.log(te.textContent)
-    const words = te.textContent.split(" ")
-    let result = []
-    for(const word of words) {
-        middle = Math.floor(word.length / 2)
-        result.push(`<b>${word.slice(undefined, middle)}</b${word.slice(middle, undefined)}>`)
+for (const te of targetElements) {
+    console.log(te.textContent);
+    const words = te.textContent.split(' ');
+    let result = [];
+    for (const word of words) {
+        middle = Math.floor(word.length / 2);
+        result.push(
+            `<b>${word.slice(undefined, middle)}</b${word.slice(
+                middle,
+                undefined
+            )}>`
+        );
     }
 
-    te.innerHTML = result.join(" ")
+    te.innerHTML = result.join(' ');
 }
 
 // // Notification body.
