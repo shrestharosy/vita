@@ -6,7 +6,7 @@ for(const te of targetElements) {
     const words = te.textContent.split(" ")
     let result = []
     for(const word of words) {
-        middle = Math.floor(word.length / 2)
+        const middle = Math.floor(word.length / 1.5)
         result.push(`<b>${word.slice(undefined, middle)}</b${word.slice(middle, undefined)}>`)
     }
 
