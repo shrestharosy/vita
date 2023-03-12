@@ -1,19 +1,28 @@
 {
     "manifest_version": 3,
-    "name": "Reading Tool",
+    "name": "Vita",
+    "version": "0.1.0",
     "author": "Ali, Amritha, Rosy, Shashanka",
-    "version": "1.0.0",
-    "action": {
-        "default_title": "Popup",
-        "default_popup": "index.html",
-        "default_icon": "logo192.png"
+    "description": "Improve reading and comprehension",
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "images/icon16.png",
+            "24": "images/icon24.png",
+            "32": "images/icon32.png"
+        }
     },
-    "icons": {},
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
     "content_scripts": [
         {
-            "matches": ["https://blank.org/*"],
-            "js": ["content-script/src/main.tsx"],
-            "media": []
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "css": ["content.css"]
         }
-    ]
+    ],
+    "web_accessible_resources": ["images/icon32.png"],
+    "permissions": ["tabs"]
 }
