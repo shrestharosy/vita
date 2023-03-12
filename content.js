@@ -1,30 +1,45 @@
-// Notification body.
-const notification = document.createElement('div');
-notification.className = 'notification';
+const  tagSet = new Set(["h1","h2","h3","h4","h5","h6","p","span","br","sup","sub","u","i","b","em","strong","del","ins","ruby","kbd","wbr"])
+const targetElements = Array.from(document.querySelectorAll("*")).filter(d => tagSet.has(d.tagName.toLowerCase()) && d.textContent.split(" ").length >= 20)
 
-// Notification icon.
-const icon = document.createElement('img');
-icon.src = chrome.runtime.getURL('images/icon32.png');
-notification.appendChild(icon);
+for(const te of targetElements) {
+    console.log(te.textContent)
+    const words = te.textContent.split(" ")
+    let result = []
+    for(const word of words) {
+        middle = Math.floor(word.length / 2)
+        result.push(`<b>${word.slice(undefined, middle)}</b${word.slice(middle, undefined)}>`)
+    }
 
-// Notification text.
-const notificationText = document.createElement('p');
-notification.appendChild(notificationText);
+    te.innerHTML = result.join(" ")
+}
 
-// Add to current page.
-document.body.appendChild(notification);
+// // Notification body.
+// const notification = document.createElement('div');
+// notification.className = 'notification';
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    const notification = document.getElementsByClassName('notification')[0];
-    const notificationText = notification.getElementsByTagName('p')[0];
+// // Notification icon.
+// const icon = document.createElement('img');
+// icon.src = chrome.runtime.getURL('images/icon32.png');
+// notification.appendChild(icon);
 
-    notificationText.innerHTML = 'You are at: ' + request.tabTitle;
+// // Notification text.
+// const notificationText = document.createElement('p');
+// notification.appendChild(notificationText);
 
-    notification.style.display = 'flex';
+// // Add to current page.
+// document.body.appendChild(notification);
 
-    setTimeout(function () {
-        notification.style.display = 'none';
-    }, 5000);
+// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+//     const notification = document.getElementsByClassName('notification')[0];
+//     const notificationText = notification.getElementsByTagName('p')[0];
 
-    return true;
-});
+//     notificationText.innerHTML = 'You are at: ' + request.tabTitle;
+
+//     notification.style.display = 'flex';
+
+//     setTimeout(function () {
+//         notification.style.display = 'none';
+//     }, 5000);
+
+//     return true;
+// });
